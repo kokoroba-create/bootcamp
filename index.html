@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能力覚醒ブートキャンプ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 15px;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+        
+        h4 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        strong {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .concern-list, .solution-list, .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .concern-list li, .solution-list li, .feature-list li {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #f39c12;
+            border-radius: 5px;
+        }
+        
+        .plan-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .plan-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+            border: 2px solid #f39c12;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .plan-card h4 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .plan-price {
+            font-size: 1.8rem;
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .plan-card p {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        
+        .faq-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .faq-item strong {
+            display: block;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .target-list {
+            background: #e8f5e9;
+            border-left: 4px solid #27ae60;
+            padding: 25px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .mismatch-list {
+            background: #ffe8e8;
+            border-left: 4px solid #e74c3c;
+            padding: 25px;
+            border-radius: 5px;
+        }
+        
+        .target-list h4, .mismatch-list h4 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .target-list ul, .mismatch-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .target-list li, .mismatch-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .target-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .mismatch-list li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(243, 156, 18, 0.3);
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            border-bottom: 3px solid #f39c12;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+        
+        .section-divider {
+            text-align: center;
+            color: #bdc3c7;
+            margin: 30px 0;
+            font-size: 1.2rem;
+        }
+        
+        /* ===== プログラムの流れ ===== */
+        .program-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: #ecf0f1;
+            padding: 30px;
+            border-radius: 5px;
+        }
+        
+        .flow-step {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .flow-step h4 {
+            background: #f39c12;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .flow-arrow {
+            color: #f39c12;
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+        
+        /* ===== 覚醒ポイント ===== */
+        .awakening-point {
+            background-color: white;
+        }
+        
+        .ap-intro {
+            background-color: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 30px;
+            border-radius: 5px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .ap-intro p {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .ap-intro strong {
+            color: #f39c12;
+        }
+        
+        .ap-examples {
+            margin-bottom: 40px;
+        }
+        
+        .ap-examples h3 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .ap-example-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .ap-example-card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .ap-detail {
+            padding: 15px;
+            background: white;
+            border-radius: 3px;
+        }
+        
+        .ap-detail p {
+            margin-bottom: 10px;
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        .ap-detail strong {
+            color: #f39c12;
+        }
+        
+        .ap-process {
+            background-color: #ecf0f1;
+            padding: 30px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .ap-process h3 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .process-step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background-color: #f39c12;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .step-content p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .ap-closing {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 1.8;
+        }
+        
+        .ap-closing p {
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .ap-closing p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .ap-closing strong {
+            color: #f39c12;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .program-flow {
+                flex-direction: column;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+            
+            .plan-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== ヒーロー ===== -->
+    <header>
+        <h1>能力覚醒ブートキャンプ</h1>
+        <p>本来の自分へ還り、現実を創造する力を手に入れる</p>
+        <p style="font-size: 1rem; margin-top: 20px;">分かってるのに動けない…それは甘えじゃない。</p>
+        <p style="font-size: 1rem;">でも、"実行できる状態"に変える必要がある。</p>
+    </header>
+
+    <!-- ===== プログラムの流れ ===== -->
+    <section>
+        <h2>プログラムの流れ</h2>
+        <div class="program-flow">
+            <div class="flow-step">
+                <h4>✨ 才能回路鑑定</h4>
+                <p>自分のチャネリング方法を特定</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+                <h4>🔥 能力覚醒ブートキャンプ</h4>
+                <p>実行できる状態に</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+                <h4>✨ 本来の自分へ還る</h4>
+                <p>現実を創造する</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 悩み提示 ===== -->
+    <section>
+        <h2>こんなお悩みはありませんか？</h2>
+        <ul class="concern-list">
+            <li>チャネリングができるが、使い所がわからない</li>
+            <li>霊能力があるのに、日常で活かせない</li>
+            <li>学びと現実のズレに違和感を感じている</li>
+            <li>「わかる」と「できる」は違うと実感している</li>
+            <li>本気で変わりたいが、開始点が不明</li>
+        </ul>
+    </section>
+
+    <!-- ===== このプログラムが解決すること ===== -->
+    <section>
+        <h2>このプログラムが解決すること</h2>
+        <ul class="solution-list">
+            <li><strong>思考の歪み</strong>を特定し、修正する</li>
+            <li><strong>無意識ブロック</strong>を破壊する</li>
+            <li><strong>行動停止の原因</strong>を解除する</li>
+            <li><strong>感覚精度</strong>を向上させる</li>
+            <li><strong>現実創造</strong>を加速させる</li>
+        </ul>
+    </section>
+
+    <!-- ===== プログラムの特徴 ===== -->
+    <section>
+        <h2>プログラムの特徴</h2>
+        <ul class="feature-list">
+            <li>🚀 <strong>超実践型</strong> – セッション内で即座に「覚醒ポイント」を見つけ、解消方法を実践</li>
+            <li>✨ <strong>個別最適化</strong> – 内容があなた専用にカスタマイズされる</li>
+            <li>💪 <strong>厳しさと愛情の両立</strong> – ズレを正確に指摘し、修正する</li>
+            <li>⚡ <strong>無意識ブロックの破壊</strong> – 癒すのではなく、根本から解除する</li>
+            <li>🔄 <strong>セッション間の実践が変化を左右</strong> – 本気で変えたい人向け</li>
+            <li>✨ <strong>才能回路鑑定との組み合わせで加速</strong> – チャネリング方法確定後の効果が倍増</li>
+        </ul>
+    </section>
+
+    <!-- ===== 覚醒ポイント ===== -->
+    <section class="awakening-point">
+        <h2>「覚醒ポイント」とは</h2>
+        <div class="ap-intro">
+            <p>あなたが本来の自分へ還り、現実を変えるために必要な気づきのポイントです。</p>
+            <p>それは、あなたの<strong>言動・思考パターン・悩みの中に隠れています。</strong></p>
+        </div>
+        <div class="ap-examples">
+            <h3>覚醒ポイントの例</h3>
+            <div class="ap-example-card">
+                <h4>例1：「できない」が口癖の人</h4>
+                <div class="ap-detail">
+                    <p><strong>覚醒ポイント：</strong>「できない」という言葉の裏にある、何か？</p>
+                    <p>↓</p>
+                    <p>「自分のことを信じていない」という思い込み</p>
+                    <p>↓</p>
+                    <p>その思い込みはどこからきたのか？</p>
+                    <p>↓</p>
+                    <p>チャネリングで深掘りして、本当の原因を見つける</p>
+                    <p>↓</p>
+                    <p>その場で解消する方法を学び、実践する</p>
+                </div>
+            </div>
+            <div class="ap-example-card">
+                <h4>例2：他人の意見が気になってしまう人</h4>
+                <div class="ap-detail">
+                    <p><strong>覚醒ポイント：</strong>なぜ他人の意見が気になるのか？</p>
+                    <p>↓</p>
+                    <p>「自分の判断が間違ってないか、常に不安」という状態</p>
+                    <p>↓</p>
+                    <p>その不安の根源は？</p>
+                    <p>↓</p>
+                    <p>チャネリングで深掘りして、本当の原因を見つける</p>
+                    <p>↓</p>
+                    <p>その場で解消する方法を学び、実践する</p>
+                </div>
+            </div>
+            <div class="ap-example-card">
+                <h4>例3：「わかっているのに行動できない」人</h4>
+                <div class="ap-detail">
+                    <p><strong>覚醒ポイント：</strong>行動を止めている、本当の理由は？</p>
+                    <p>↓</p>
+                    <p>「失敗が怖い」「批判されるのが怖い」などの恐怖</p>
+                    <p>↓</p>
+                    <p>その恐怖はどこからきたのか？</p>
+                    <p>↓</p>
+                    <p>チャネリングで深掘りして、本当の原因を見つける</p>
+                    <p>↓</p>
+                    <p>その場で解消する方法を学び、実践する</p>
+                </div>
+            </div>
+        </div>
+        <div class="ap-process">
+            <h3>「覚醒ポイント」を見つけて解消する流れ</h3>
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>あなたの言動から「覚醒ポイント」を見つける</h4>
+                    <p>セッション内で、あなたが話す内容・悩みの言葉から、私が「本当の問題」を見つけます。</p>
+                    <p>例：「できない」という言葉 → 「自信がない」という本当の問題</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>その原因をチャネリングで深掘りする</h4>
+                    <p>見つかった「覚醒ポイント」に対して、チャネリングを使って深掘りします。</p>
+                    <p>「なぜ自信がないのか」「その思い込みはいつできたのか」など、根本原因にアクセスします。</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>解消する方法を教えながら実践する</h4>
+                    <p>「このような時は、こうチャネリングする」という具体的な方法を教えます。</p>
+                    <p>その場で一緒に実践して、本当に解消できることを確認します。</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>あなたが日常で繰り返せるようになる</h4>
+                    <p>セッション後、あなたはその方法を自分で使えます。</p>
+                    <p>同じような「覚醒ポイント」が出てきた時に、その場で解消できるスキルが身につきます。</p>
+                </div>
+            </div>
+        </div>
+        <div class="ap-closing">
+            <p>つまり、このプログラムは<strong>「知識を学ぶ場」ではなく「スキルを習得する場」</strong>です。</p>
+            <p>セッション内で「覚醒ポイント」を見つけ、その解消方法を学び、実際に使えるようになる。</p>
+            <p>だから、セッション後、あなたの現実が変わり始めるのです。</p>
+        </div>
+    </section>
+
+    <div class="section-divider">━━━━━━━━━━━━━━━━━━━━━━━━</div>
+
+    <!-- ===== 受講後の変化 ===== -->
+    <section>
+        <h2>受講後の変化</h2>
+        <ul class="concern-list">
+            <li>自分の疑問点が明確になる</li>
+            <li>深掘りすべき範囲がわかる</li>
+            <li>実践できるようになる</li>
+            <li>他者と比較せずに進められる</li>
+            <li>チャネリングの精度が上がる</li>
+        </ul>
+    </section>
+
+    <!-- ===== プラン比較 ===== -->
+    <section>
+        <h2>3つのプラン</h2>
+        <div class="plan-container">
+            <div class="plan-card">
+                <h4>SINGLE</h4>
+                <div class="plan-price">¥38,500</div>
+                <p><strong>60分 × 1回</strong></p>
+                <p>現状確認 + 実践トレーニング</p>
+                <p style="font-size: 0.9rem; margin-top: 15px; color: #999;">すぐに必要なことを知りたい人向け</p>
+            </div>
+            <div class="plan-card">
+                <h4>STANDARD</h4>
+                <div class="plan-price">¥88,000</div>
+                <p><strong>90分 + 60分</strong></p>
+                <p>（2〜3週間隔）</p>
+                <p>診断・トレーニング → 振り返り・定着</p>
+                <p style="font-size: 0.9rem; margin-top: 15px; color: #999;">変化を確実に定着させたい人向け</p>
+            </div>
+            <div class="plan-card">
+                <h4>INTENSIVE</h4>
+                <div class="plan-price">¥110,000</div>
+                <p><strong>90分 × 2回</strong></p>
+                <p>（2〜3週間隔）</p>
+                <p>診断・トレーニング → 個別深掘り</p>
+                <p style="font-size: 0.9rem; margin-top: 15px; color: #999;">本気で深掘りしたい人向け</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== よくある質問 ===== -->
+    <section>
+        <h2>よくある質問</h2>
+        <div class="faq-item">
+            <strong>Q. 前提条件はありますか？</strong>
+            <p>A. チャネリングができる、またはスピリチュアルに真摯に向き合う意思がある方が対象です。</p>
+        </div>
+        <div class="faq-item">
+            <strong>Q. オンラインですか？</strong>
+            <p>A. はい、個別オンライン（Zoom）で実施します。</p>
+        </div>
+        <div class="faq-item">
+            <strong>Q. 効果はどのくらいで実感できますか？</strong>
+            <p>A. 個人差がありますが、1回目セッション後に変化を感じる方が多いです。</p>
+        </div>
+        <div class="faq-item">
+            <strong>Q. 他の講座と何が違うのですか？</strong>
+            <p>A. 知識提供ではなく、実行できる状態に強制的に引き上げることが目的です。</p>
+        </div>
+        <div class="faq-item">
+            <strong>Q. 才能回路鑑定との違いは？</strong>
+            <p>A. 才能回路鑑定は「自分のチャネリング方法を特定する」、ブートキャンプは「その方法を実行できる状態にする」です。組み合わせることで効果が倍増します。</p>
+        </div>
+        <div class="faq-item">
+            <strong>Q. セッション間は何をすればいいですか？</strong>
+            <p>A. 1回目セッションで学んだことを日常で実践することが重要です。宿題や実践ガイドをお渡しします。</p>
+        </div>
+    </section>
+
+    <!-- ===== こんな方に来てほしい / ご縁がない場合 ===== -->
+    <section>
+        <div class="target-list">
+            <h4>こんな方に来てほしい</h4>
+            <ul>
+                <li>本来の自分に戻りたい方</li>
+                <li>スピリチュアルに真摯に向き合う意思がある方</li>
+                <li>本気で現実を変えたい方</li>
+                <li>知識だけでなく「実行できる状態」を求める方</li>
+                <li>自分と向き合う覚悟がある方</li>
+            </ul>
+        </div>
+        <div class="mismatch-list">
+            <h4>申し訳ないが、ご縁がない場合</h4>
+            <ul>
+                <li>すぐに結果・答えが欲しい方</li>
+                <li>楽に変わりたい方</li>
+                <li>厳しさを求めない方</li>
+                <li>誰かに答えを出してもらいたい方</li>
+                <li>自分と向き合うことを避けたい方</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section">
+        <h2>本気で変わる一歩を踏み出しませんか？</h2>
+        <p style="margin-bottom: 30px;">まずは無料個別相談会で、あなたに最適なプランを確認してください。</p>
+        <a href="https://lit.link/Kakuei_reina" class="cta-button">無料個別相談会に申し込む</a>
+    </section>
+
+    <!-- ===== フッター ===== -->
+    <footer>
+        <p>&copy; 2026 能力覚醒ブートキャンプ All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
